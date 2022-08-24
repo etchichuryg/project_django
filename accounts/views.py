@@ -136,9 +136,9 @@ def createOrder(request, pk):
 	OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10 )
 	customer = Customer.objects.get(id=pk)
 	formset = OrderFormSet(queryset=Order.objects.none(),instance=customer)
-	#form = OrderForm(initial={'customer':customer})
+	
 	if request.method == 'POST':
-		#print('Printing POST:', request.POST)
+		
 		form = OrderForm(request.POST)
 		formset = OrderFormSet(request.POST, instance=customer)
 		if formset.is_valid():
